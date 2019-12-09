@@ -46,7 +46,7 @@ func flipPid(pid string, signal int) string {
 }
 
 func usage() string {
-	return "Usage: tfkill [-s signum] pid"
+	return "Usage: tfkill [-s signum] pids"
 }
 
 func main() {
@@ -57,7 +57,7 @@ func main() {
 		fmt.Println(usage())
 		os.Exit(1)
 	}
-
+	flag.Usage = func() { fmt.Println(usage()) }
 	flag.IntVar(&signal, "s", 15, "signal to send to pids")
 	flag.Parse()
 	pids = flag.Args()
